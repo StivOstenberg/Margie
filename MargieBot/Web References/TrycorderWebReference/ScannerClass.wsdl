@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ScannerClass" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/ScannerEngine" />
+      <xs:element name="ScanResults">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ScanResultsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="ScanResultsResult" nillable="true">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:appinfo>
+                    <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:sequence>
+                  <xs:element ref="xs:schema" />
+                  <xs:any />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ScanAll">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ScanAllResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="ScanAllResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LoadAWSCredentials">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentialfile" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LoadAWSCredentialsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="LoadAWSCredentialsResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetData">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="value" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDataResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetDataResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoveBadProfiles">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoveBadProfilesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="RemoveBadProfilesResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Initialize">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="InitializeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="InitializeResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LastScan">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LastScanResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="LastScanResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetComponentDataTable">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="component" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetComponentDataTableResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetComponentDataTableResult" nillable="true">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:appinfo>
+                    <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:sequence>
+                  <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetColumnVisSetting">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="component" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetColumnVisSettingResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetColumnVisSettingResult" nillable="true" type="q1:ArrayOfKeyValueOfstringboolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetColumnVisSetting">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="component" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="column" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="visibility" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetColumnVisSettingResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetStatus">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetStatusResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetStatusResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterDataTable">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Table2Filter" nillable="true">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:appinfo>
+                    <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:sequence>
+                  <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="filterstring" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="caseinsensitive" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterDataTableResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="FilterDataTableResult" nillable="true">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:appinfo>
+                    <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:sequence>
+                  <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterScannerDataTable">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Component" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="filterstring" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="caseinsensitive" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterScannerDataTableResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="FilterScannerDataTableResult" nillable="true">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:appinfo>
+                    <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:sequence>
+                  <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterDataTablebyCol">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Table2Filter" nillable="true">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:appinfo>
+                    <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:sequence>
+                  <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="column2filter" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="filterstring" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="caseinsensitive" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterDataTablebyColResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="FilterDataTablebyColResult" nillable="true">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:appinfo>
+                    <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:sequence>
+                  <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterScannerDataTablebyCol">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Component" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="column2filter" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="filterstring" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="caseinsensitive" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterScannerDataTablebyColResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="FilterScannerDataTablebyColResult" nillable="true">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:appinfo>
+                    <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:sequence>
+                  <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetRegionStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="region" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="state" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetRegionStatusResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setProfileStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="aprofile" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="state" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setProfileStatusResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDataUsingDataContract">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ScannerEngine" minOccurs="0" name="composite" nillable="true" type="q2:CompositeType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDataUsingDataContractResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ScannerEngine" minOccurs="0" name="GetDataUsingDataContractResult" nillable="true" type="q3:CompositeType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProfiles">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProfilesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetProfilesResult" nillable="true" type="q4:ArrayOfKeyValueOfstringboolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBadProfiles">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBadProfilesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetBadProfilesResult" nillable="true" type="q5:ArrayOfKeyValueOfstringstring" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetRegions">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetRegionsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetRegionsResult" nillable="true" type="q6:ArrayOfKeyValueOfstringboolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetComponents">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetComponentsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetComponentsResult" nillable="true" type="q7:ArrayOfKeyValueOfstringboolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDetailedStatus">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDetailedStatusResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetDetailedStatusResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetComponentScanBit">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="component" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="state" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetComponentScanBitResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="DataSet" nillable="true">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:appinfo>
+              <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:element ref="xs:schema" />
+            <xs:any />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System.Data" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="DataTable" nillable="true">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:appinfo>
+              <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfKeyValueOfstringboolean">
+        <xs:annotation>
+          <xs:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringboolean">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Key" nillable="true" type="xs:string" />
+                <xs:element name="Value" type="xs:boolean" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfKeyValueOfstringboolean" nillable="true" type="tns:ArrayOfKeyValueOfstringboolean" />
+      <xs:complexType name="ArrayOfKeyValueOfstringstring">
+        <xs:annotation>
+          <xs:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringstring">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Key" nillable="true" type="xs:string" />
+                <xs:element name="Value" nillable="true" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfKeyValueOfstringstring" nillable="true" type="tns:ArrayOfKeyValueOfstringstring" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ScannerEngine" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ScannerEngine" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="CompositeType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BoolValue" type="xs:boolean" />
+          <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ScannerInterfaceDefinition_ScanResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanResults" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_ScanResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_ScanAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanAll" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_ScanAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_LoadAWSCredentials_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAWSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_LoadAWSCredentials_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAWSCredentialsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_RemoveBadProfiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveBadProfiles" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_RemoveBadProfiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveBadProfilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_Initialize_InputMessage">
+    <wsdl:part name="parameters" element="tns:Initialize" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_Initialize_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitializeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_LastScan_InputMessage">
+    <wsdl:part name="parameters" element="tns:LastScan" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_LastScan_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LastScanResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetComponentDataTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetComponentDataTable" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetComponentDataTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetComponentDataTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetColumnVisSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetColumnVisSetting" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetColumnVisSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetColumnVisSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_SetColumnVisSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetColumnVisSetting" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_SetColumnVisSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetColumnVisSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatus" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_FilterDataTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:FilterDataTable" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_FilterDataTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FilterDataTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_FilterScannerDataTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:FilterScannerDataTable" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_FilterScannerDataTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FilterScannerDataTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_FilterDataTablebyCol_InputMessage">
+    <wsdl:part name="parameters" element="tns:FilterDataTablebyCol" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_FilterDataTablebyCol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FilterDataTablebyColResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_FilterScannerDataTablebyCol_InputMessage">
+    <wsdl:part name="parameters" element="tns:FilterScannerDataTablebyCol" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_FilterScannerDataTablebyCol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FilterScannerDataTablebyColResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_SetRegionStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRegionStatus" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_SetRegionStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRegionStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_setProfileStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:setProfileStatus" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_setProfileStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setProfileStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetProfiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProfiles" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetProfiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProfilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetBadProfiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBadProfiles" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetBadProfiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBadProfilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetRegions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegions" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetRegions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetComponents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetComponents" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetComponents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetComponentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetDetailedStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDetailedStatus" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_GetDetailedStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDetailedStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_SetComponentScanBit_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetComponentScanBit" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_SetComponentScanBit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetComponentScanBitResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ScannerInterfaceDefinition">
+    <wsdl:operation name="ScanResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/ScanResults" message="tns:ScannerInterfaceDefinition_ScanResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/ScanResultsResponse" message="tns:ScannerInterfaceDefinition_ScanResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/ScanAll" message="tns:ScannerInterfaceDefinition_ScanAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/ScanAllResponse" message="tns:ScannerInterfaceDefinition_ScanAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadAWSCredentials">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/LoadAWSCredentials" message="tns:ScannerInterfaceDefinition_LoadAWSCredentials_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/LoadAWSCredentialsResponse" message="tns:ScannerInterfaceDefinition_LoadAWSCredentials_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetData" message="tns:ScannerInterfaceDefinition_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetDataResponse" message="tns:ScannerInterfaceDefinition_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveBadProfiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/RemoveBadProfiles" message="tns:ScannerInterfaceDefinition_RemoveBadProfiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/RemoveBadProfilesResponse" message="tns:ScannerInterfaceDefinition_RemoveBadProfiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Initialize">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/Initialize" message="tns:ScannerInterfaceDefinition_Initialize_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/InitializeResponse" message="tns:ScannerInterfaceDefinition_Initialize_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LastScan">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/LastScan" message="tns:ScannerInterfaceDefinition_LastScan_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/LastScanResponse" message="tns:ScannerInterfaceDefinition_LastScan_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetComponentDataTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetComponentDataTable" message="tns:ScannerInterfaceDefinition_GetComponentDataTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetComponentDataTableResponse" message="tns:ScannerInterfaceDefinition_GetComponentDataTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetColumnVisSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetColumnVisSetting" message="tns:ScannerInterfaceDefinition_GetColumnVisSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetColumnVisSettingResponse" message="tns:ScannerInterfaceDefinition_GetColumnVisSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetColumnVisSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/SetColumnVisSetting" message="tns:ScannerInterfaceDefinition_SetColumnVisSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/SetColumnVisSettingResponse" message="tns:ScannerInterfaceDefinition_SetColumnVisSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetStatus" message="tns:ScannerInterfaceDefinition_GetStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetStatusResponse" message="tns:ScannerInterfaceDefinition_GetStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterDataTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTable" message="tns:ScannerInterfaceDefinition_FilterDataTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTableResponse" message="tns:ScannerInterfaceDefinition_FilterDataTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterScannerDataTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTable" message="tns:ScannerInterfaceDefinition_FilterScannerDataTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTableResponse" message="tns:ScannerInterfaceDefinition_FilterScannerDataTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterDataTablebyCol">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTablebyCol" message="tns:ScannerInterfaceDefinition_FilterDataTablebyCol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTablebyColResponse" message="tns:ScannerInterfaceDefinition_FilterDataTablebyCol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterScannerDataTablebyCol">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTablebyCol" message="tns:ScannerInterfaceDefinition_FilterScannerDataTablebyCol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTablebyColResponse" message="tns:ScannerInterfaceDefinition_FilterScannerDataTablebyCol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRegionStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/SetRegionStatus" message="tns:ScannerInterfaceDefinition_SetRegionStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/SetRegionStatusResponse" message="tns:ScannerInterfaceDefinition_SetRegionStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setProfileStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/setProfileStatus" message="tns:ScannerInterfaceDefinition_setProfileStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/setProfileStatusResponse" message="tns:ScannerInterfaceDefinition_setProfileStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetDataUsingDataContract" message="tns:ScannerInterfaceDefinition_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetDataUsingDataContractResponse" message="tns:ScannerInterfaceDefinition_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetProfiles" message="tns:ScannerInterfaceDefinition_GetProfiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetProfilesResponse" message="tns:ScannerInterfaceDefinition_GetProfiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBadProfiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetBadProfiles" message="tns:ScannerInterfaceDefinition_GetBadProfiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetBadProfilesResponse" message="tns:ScannerInterfaceDefinition_GetBadProfiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegions">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetRegions" message="tns:ScannerInterfaceDefinition_GetRegions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetRegionsResponse" message="tns:ScannerInterfaceDefinition_GetRegions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetComponents">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetComponents" message="tns:ScannerInterfaceDefinition_GetComponents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetComponentsResponse" message="tns:ScannerInterfaceDefinition_GetComponents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailedStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetDetailedStatus" message="tns:ScannerInterfaceDefinition_GetDetailedStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/GetDetailedStatusResponse" message="tns:ScannerInterfaceDefinition_GetDetailedStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetComponentScanBit">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/SetComponentScanBit" message="tns:ScannerInterfaceDefinition_SetComponentScanBit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/SetComponentScanBitResponse" message="tns:ScannerInterfaceDefinition_SetComponentScanBit_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ScannerInterfaceDefinition" type="tns:ScannerInterfaceDefinition">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ScanResults">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/ScanResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanAll">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/ScanAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadAWSCredentials">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/LoadAWSCredentials" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveBadProfiles">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/RemoveBadProfiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Initialize">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/Initialize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LastScan">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/LastScan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetComponentDataTable">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/GetComponentDataTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetColumnVisSetting">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/GetColumnVisSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetColumnVisSetting">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/SetColumnVisSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/GetStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterDataTable">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterScannerDataTable">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterDataTablebyCol">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTablebyCol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterScannerDataTablebyCol">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTablebyCol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRegionStatus">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/SetRegionStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setProfileStatus">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/setProfileStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfiles">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/GetProfiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBadProfiles">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/GetBadProfiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegions">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/GetRegions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetComponents">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/GetComponents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailedStatus">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/GetDetailedStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetComponentScanBit">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/SetComponentScanBit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ScannerClass">
+    <wsdl:port name="BasicHttpBinding_ScannerInterfaceDefinition" binding="tns:BasicHttpBinding_ScannerInterfaceDefinition">
+      <soap:address location="http://trycorder.s-plus.us/Trycorder.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
