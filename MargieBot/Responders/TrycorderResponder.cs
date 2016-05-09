@@ -9,6 +9,7 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.Collections.Generic;
+using System.Data;
 
 namespace MargieBot.Responders
 {
@@ -51,6 +52,7 @@ namespace MargieBot.Responders
                     toreturn.Text= ec2processor(args);
                     break;
                 case "rds":
+                    toreturn.Text = rdsprocessor(args);
                     break;
                 case "scan":
                     try
@@ -113,6 +115,7 @@ namespace MargieBot.Responders
             ToReturn += "Scan\n";
             ToReturn += "Profiles\n";
             ToReturn += "Status\n";
+            ToReturn += "ec2 {Searchstring} \n";
 
             return ToReturn;
         }
@@ -126,13 +129,44 @@ namespace MargieBot.Responders
             string ToReturn = "";
             string filterstring = args[2];
 
-            var what = Trycorder.FilterScannerDataTable("ec2", filterstring, true, true);
+            var what = Trycorder.FilterScannerDataTable("ec2", filterstring, true,true);
 
             var number = what.Rows.Count;
 
-            foreach(var arow in what.Rows)
+            foreach( DataRow arow in what.Rows)
             {
-                string account = "";
+                
+                string Profile = arow["Profile"].ToString();
+                string InstanceID = arow["InstanceID"].ToString();
+                string InstanceName = arow["InstanceName"].ToString();
+                string PublicIP = arow["PrivateIP"].ToString();
+                string PrivateIP = arow["PublicIP"].ToString();
+                ToReturn += Profile + "   " + InstanceName + "   " + InstanceID + "  Pub:" + PublicIP + " Pri:" + PrivateIP + "\n";
+
+            }
+             
+
+
+            return ToReturn;
+        }
+
+        public string rdsprocessor(List<string> args)
+        {
+            string ToReturn = "";
+            string filterstring = args[2];
+
+            var what = Trycorder.FilterScannerDataTable("rds", filterstring, true, true);
+
+            var number = what.Rows.Count;
+
+            foreach (DataRow arow in what.Rows)
+            {
+
+                string Profile = arow["Profile"].ToString();
+                string InstanceID = arow["InstanceID"].ToString();
+                string Name = arow["Name"].ToString();
+                string EndPoint = arow["EndPoint"].ToString();
+                ToReturn += Profile +   "    Name:" +  Name + "   " + EndPoint + "\n";
 
             }
 

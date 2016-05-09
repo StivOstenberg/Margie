@@ -210,34 +210,6 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="FilterScannerDataTable">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element minOccurs="0" name="Component" nillable="true" type="xs:string" />
-            <xs:element minOccurs="0" name="filterstring" nillable="true" type="xs:string" />
-            <xs:element minOccurs="0" name="caseinsensitive" type="xs:boolean" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="FilterScannerDataTableResponse">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element minOccurs="0" name="FilterScannerDataTableResult" nillable="true">
-              <xs:complexType>
-                <xs:annotation>
-                  <xs:appinfo>
-                    <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-                  </xs:appinfo>
-                </xs:annotation>
-                <xs:sequence>
-                  <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
-                  <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
       <xs:element name="FilterDataTablebyCol">
         <xs:complexType>
           <xs:sequence>
@@ -279,10 +251,38 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="FilterScannerDataTable">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Table2Filter" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="filterstring" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="caseinsensitive" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterScannerDataTableResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="FilterScannerDataTableResult" nillable="true">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:appinfo>
+                    <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:sequence>
+                  <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="FilterScannerDataTablebyCol">
         <xs:complexType>
           <xs:sequence>
-            <xs:element minOccurs="0" name="Component" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="Table2Filter" nillable="true" type="xs:string" />
             <xs:element minOccurs="0" name="column2filter" nillable="true" type="xs:string" />
             <xs:element minOccurs="0" name="filterstring" nillable="true" type="xs:string" />
             <xs:element minOccurs="0" name="caseinsensitive" type="xs:boolean" />
@@ -613,17 +613,17 @@
   <wsdl:message name="ScannerInterfaceDefinition_FilterDataTable_OutputMessage">
     <wsdl:part name="parameters" element="tns:FilterDataTableResponse" />
   </wsdl:message>
-  <wsdl:message name="ScannerInterfaceDefinition_FilterScannerDataTable_InputMessage">
-    <wsdl:part name="parameters" element="tns:FilterScannerDataTable" />
-  </wsdl:message>
-  <wsdl:message name="ScannerInterfaceDefinition_FilterScannerDataTable_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FilterScannerDataTableResponse" />
-  </wsdl:message>
   <wsdl:message name="ScannerInterfaceDefinition_FilterDataTablebyCol_InputMessage">
     <wsdl:part name="parameters" element="tns:FilterDataTablebyCol" />
   </wsdl:message>
   <wsdl:message name="ScannerInterfaceDefinition_FilterDataTablebyCol_OutputMessage">
     <wsdl:part name="parameters" element="tns:FilterDataTablebyColResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_FilterScannerDataTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:FilterScannerDataTable" />
+  </wsdl:message>
+  <wsdl:message name="ScannerInterfaceDefinition_FilterScannerDataTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FilterScannerDataTableResponse" />
   </wsdl:message>
   <wsdl:message name="ScannerInterfaceDefinition_FilterScannerDataTablebyCol_InputMessage">
     <wsdl:part name="parameters" element="tns:FilterScannerDataTablebyCol" />
@@ -734,13 +734,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTable" message="tns:ScannerInterfaceDefinition_FilterDataTable_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTableResponse" message="tns:ScannerInterfaceDefinition_FilterDataTable_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="FilterScannerDataTable">
-      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTable" message="tns:ScannerInterfaceDefinition_FilterScannerDataTable_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTableResponse" message="tns:ScannerInterfaceDefinition_FilterScannerDataTable_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="FilterDataTablebyCol">
       <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTablebyCol" message="tns:ScannerInterfaceDefinition_FilterDataTablebyCol_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTablebyColResponse" message="tns:ScannerInterfaceDefinition_FilterDataTablebyCol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterScannerDataTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTable" message="tns:ScannerInterfaceDefinition_FilterScannerDataTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTableResponse" message="tns:ScannerInterfaceDefinition_FilterScannerDataTable_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="FilterScannerDataTablebyCol">
       <wsdl:input wsaw:Action="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTablebyCol" message="tns:ScannerInterfaceDefinition_FilterScannerDataTablebyCol_InputMessage" />
@@ -893,8 +893,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FilterScannerDataTable">
-      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTable" style="document" />
+    <wsdl:operation name="FilterDataTablebyCol">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTablebyCol" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -902,8 +902,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FilterDataTablebyCol">
-      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/FilterDataTablebyCol" style="document" />
+    <wsdl:operation name="FilterScannerDataTable">
+      <soap:operation soapAction="http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTable" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

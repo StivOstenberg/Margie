@@ -24,7 +24,7 @@ namespace MargieBot.TrycorderWebReference {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="BasicHttpBinding_ScannerInterfaceDefinition", Namespace="http://tempuri.org/")]
@@ -54,9 +54,9 @@ namespace MargieBot.TrycorderWebReference {
         
         private System.Threading.SendOrPostCallback FilterDataTableOperationCompleted;
         
-        private System.Threading.SendOrPostCallback FilterScannerDataTableOperationCompleted;
-        
         private System.Threading.SendOrPostCallback FilterDataTablebyColOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback FilterScannerDataTableOperationCompleted;
         
         private System.Threading.SendOrPostCallback FilterScannerDataTablebyColOperationCompleted;
         
@@ -153,10 +153,10 @@ namespace MargieBot.TrycorderWebReference {
         public event FilterDataTableCompletedEventHandler FilterDataTableCompleted;
         
         /// <remarks/>
-        public event FilterScannerDataTableCompletedEventHandler FilterScannerDataTableCompleted;
+        public event FilterDataTablebyColCompletedEventHandler FilterDataTablebyColCompleted;
         
         /// <remarks/>
-        public event FilterDataTablebyColCompletedEventHandler FilterDataTablebyColCompleted;
+        public event FilterScannerDataTableCompletedEventHandler FilterScannerDataTableCompleted;
         
         /// <remarks/>
         public event FilterScannerDataTablebyColCompletedEventHandler FilterScannerDataTablebyColCompleted;
@@ -550,42 +550,6 @@ namespace MargieBot.TrycorderWebReference {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Data.DataTable FilterScannerDataTable([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Component, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string filterstring, bool caseinsensitive, [System.Xml.Serialization.XmlIgnoreAttribute()] bool caseinsensitiveSpecified) {
-            object[] results = this.Invoke("FilterScannerDataTable", new object[] {
-                        Component,
-                        filterstring,
-                        caseinsensitive,
-                        caseinsensitiveSpecified});
-            return ((System.Data.DataTable)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void FilterScannerDataTableAsync(string Component, string filterstring, bool caseinsensitive, bool caseinsensitiveSpecified) {
-            this.FilterScannerDataTableAsync(Component, filterstring, caseinsensitive, caseinsensitiveSpecified, null);
-        }
-        
-        /// <remarks/>
-        public void FilterScannerDataTableAsync(string Component, string filterstring, bool caseinsensitive, bool caseinsensitiveSpecified, object userState) {
-            if ((this.FilterScannerDataTableOperationCompleted == null)) {
-                this.FilterScannerDataTableOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFilterScannerDataTableOperationCompleted);
-            }
-            this.InvokeAsync("FilterScannerDataTable", new object[] {
-                        Component,
-                        filterstring,
-                        caseinsensitive,
-                        caseinsensitiveSpecified}, this.FilterScannerDataTableOperationCompleted, userState);
-        }
-        
-        private void OnFilterScannerDataTableOperationCompleted(object arg) {
-            if ((this.FilterScannerDataTableCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.FilterScannerDataTableCompleted(this, new FilterScannerDataTableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ScannerInterfaceDefinition/FilterDataTablebyCol", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public System.Data.DataTable FilterDataTablebyCol([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Data.DataTable Table2Filter, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string column2filter, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string filterstring, bool caseinsensitive, [System.Xml.Serialization.XmlIgnoreAttribute()] bool caseinsensitiveSpecified) {
@@ -624,11 +588,47 @@ namespace MargieBot.TrycorderWebReference {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Data.DataTable FilterScannerDataTable([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Table2Filter, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string filterstring, bool caseinsensitive, [System.Xml.Serialization.XmlIgnoreAttribute()] bool caseinsensitiveSpecified) {
+            object[] results = this.Invoke("FilterScannerDataTable", new object[] {
+                        Table2Filter,
+                        filterstring,
+                        caseinsensitive,
+                        caseinsensitiveSpecified});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FilterScannerDataTableAsync(string Table2Filter, string filterstring, bool caseinsensitive, bool caseinsensitiveSpecified) {
+            this.FilterScannerDataTableAsync(Table2Filter, filterstring, caseinsensitive, caseinsensitiveSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void FilterScannerDataTableAsync(string Table2Filter, string filterstring, bool caseinsensitive, bool caseinsensitiveSpecified, object userState) {
+            if ((this.FilterScannerDataTableOperationCompleted == null)) {
+                this.FilterScannerDataTableOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFilterScannerDataTableOperationCompleted);
+            }
+            this.InvokeAsync("FilterScannerDataTable", new object[] {
+                        Table2Filter,
+                        filterstring,
+                        caseinsensitive,
+                        caseinsensitiveSpecified}, this.FilterScannerDataTableOperationCompleted, userState);
+        }
+        
+        private void OnFilterScannerDataTableOperationCompleted(object arg) {
+            if ((this.FilterScannerDataTableCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FilterScannerDataTableCompleted(this, new FilterScannerDataTableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ScannerInterfaceDefinition/FilterScannerDataTablebyCol", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Data.DataTable FilterScannerDataTablebyCol([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Component, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string column2filter, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string filterstring, bool caseinsensitive, [System.Xml.Serialization.XmlIgnoreAttribute()] bool caseinsensitiveSpecified) {
+        public System.Data.DataTable FilterScannerDataTablebyCol([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string Table2Filter, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string column2filter, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string filterstring, bool caseinsensitive, [System.Xml.Serialization.XmlIgnoreAttribute()] bool caseinsensitiveSpecified) {
             object[] results = this.Invoke("FilterScannerDataTablebyCol", new object[] {
-                        Component,
+                        Table2Filter,
                         column2filter,
                         filterstring,
                         caseinsensitive,
@@ -637,17 +637,17 @@ namespace MargieBot.TrycorderWebReference {
         }
         
         /// <remarks/>
-        public void FilterScannerDataTablebyColAsync(string Component, string column2filter, string filterstring, bool caseinsensitive, bool caseinsensitiveSpecified) {
-            this.FilterScannerDataTablebyColAsync(Component, column2filter, filterstring, caseinsensitive, caseinsensitiveSpecified, null);
+        public void FilterScannerDataTablebyColAsync(string Table2Filter, string column2filter, string filterstring, bool caseinsensitive, bool caseinsensitiveSpecified) {
+            this.FilterScannerDataTablebyColAsync(Table2Filter, column2filter, filterstring, caseinsensitive, caseinsensitiveSpecified, null);
         }
         
         /// <remarks/>
-        public void FilterScannerDataTablebyColAsync(string Component, string column2filter, string filterstring, bool caseinsensitive, bool caseinsensitiveSpecified, object userState) {
+        public void FilterScannerDataTablebyColAsync(string Table2Filter, string column2filter, string filterstring, bool caseinsensitive, bool caseinsensitiveSpecified, object userState) {
             if ((this.FilterScannerDataTablebyColOperationCompleted == null)) {
                 this.FilterScannerDataTablebyColOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFilterScannerDataTablebyColOperationCompleted);
             }
             this.InvokeAsync("FilterScannerDataTablebyCol", new object[] {
-                        Component,
+                        Table2Filter,
                         column2filter,
                         filterstring,
                         caseinsensitive,
@@ -1067,11 +1067,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void ScanResultsCompletedEventHandler(object sender, ScanResultsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ScanResultsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1093,11 +1093,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void ScanAllCompletedEventHandler(object sender, ScanAllCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ScanAllCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1119,11 +1119,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void LoadAWSCredentialsCompletedEventHandler(object sender, LoadAWSCredentialsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LoadAWSCredentialsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1145,11 +1145,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetDataCompletedEventHandler(object sender, GetDataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1171,11 +1171,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void RemoveBadProfilesCompletedEventHandler(object sender, RemoveBadProfilesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class RemoveBadProfilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1197,11 +1197,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void InitializeCompletedEventHandler(object sender, InitializeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class InitializeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1223,11 +1223,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void LastScanCompletedEventHandler(object sender, LastScanCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LastScanCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1249,11 +1249,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetComponentDataTableCompletedEventHandler(object sender, GetComponentDataTableCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetComponentDataTableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1275,11 +1275,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetColumnVisSettingCompletedEventHandler(object sender, GetColumnVisSettingCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetColumnVisSettingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1301,15 +1301,15 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void SetColumnVisSettingCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetStatusCompletedEventHandler(object sender, GetStatusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1331,11 +1331,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void FilterDataTableCompletedEventHandler(object sender, FilterDataTableCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FilterDataTableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1357,37 +1357,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
-    public delegate void FilterScannerDataTableCompletedEventHandler(object sender, FilterScannerDataTableCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class FilterScannerDataTableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal FilterScannerDataTableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataTable Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataTable)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void FilterDataTablebyColCompletedEventHandler(object sender, FilterDataTablebyColCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FilterDataTablebyColCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1409,11 +1383,37 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void FilterScannerDataTableCompletedEventHandler(object sender, FilterScannerDataTableCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FilterScannerDataTableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FilterScannerDataTableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void FilterScannerDataTablebyColCompletedEventHandler(object sender, FilterScannerDataTablebyColCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FilterScannerDataTablebyColCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1435,19 +1435,19 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void SetRegionStatusCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void setProfileStatusCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetDataUsingDataContractCompletedEventHandler(object sender, GetDataUsingDataContractCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetDataUsingDataContractCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1469,11 +1469,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetProfilesCompletedEventHandler(object sender, GetProfilesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetProfilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1495,11 +1495,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetBadProfilesCompletedEventHandler(object sender, GetBadProfilesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBadProfilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1521,11 +1521,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetRegionsCompletedEventHandler(object sender, GetRegionsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetRegionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1547,11 +1547,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetComponentsCompletedEventHandler(object sender, GetComponentsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetComponentsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1573,11 +1573,11 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetDetailedStatusCompletedEventHandler(object sender, GetDetailedStatusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetDetailedStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1599,7 +1599,7 @@ namespace MargieBot.TrycorderWebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void SetComponentScanBitCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
