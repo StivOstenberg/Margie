@@ -114,7 +114,7 @@ namespace MargieBot
 
             NoobWebClient client = new NoobWebClient();
             string json = await client.DownloadString("https://slack.com/api/rtm.start", RequestMethod.Post, "token", this.SlackKey);
-            JObject jData = JObject.Parse(json);
+          JObject jData = JObject.Parse(json);
 
             TeamID = jData["team"]["id"].Value<string>();
             TeamName = jData["team"]["name"].Value<string>();

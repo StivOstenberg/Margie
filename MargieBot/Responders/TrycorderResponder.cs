@@ -23,7 +23,10 @@ namespace MargieBot.Responders
 
         public bool CanRespond(ResponseContext context)
         {
-            bool testcondition = (context.Message.MentionsBot || context.Message.ChatHub.Type == SlackChatHubType.DM);
+            string channel = context.Message.ChatHub.Name;
+
+            
+            bool testcondition = ((context.Message.MentionsBot && (channel.Equals("#operations")) || channel.Equals("trycorderchannel")) || context.Message.ChatHub.Type == SlackChatHubType.DM);
             return testcondition;
         }
 
@@ -36,6 +39,18 @@ namespace MargieBot.Responders
             //Need to initialize connection to Trycorder..
             //ScannerEngine.ScannerClass Trycorder = new ScannerEngine.ScannerClass();
             // AWSFunctions.ScanAWS stivfunc = new AWSFunctions.ScanAWS();
+            List<String> Users = new List<string>();
+            Users.Add("rhamm");
+            Users.Add("j.wind");
+            Users.Add("stivostenberg");
+            Users.Add("a1.young");
+            Users.Add("s.nascimento");
+
+            if(!Users.Contains(alias))
+            {
+                toreturn.Text = "I am sorry," + alias + ", but you are not the boss of me!";
+                return toreturn;
+            }
 
 
 
@@ -50,6 +65,13 @@ namespace MargieBot.Responders
             {
                 case "ec2":
                     toreturn.Text= ec2processor(args);
+                    break;
+                case "iam":
+                    toreturn.Text = iamprocessor(args);
+                    break;
+
+                case "init":
+                    toreturn.Text = Trycorder.Initialize();
                     break;
                 case "rds":
                     toreturn.Text = rdsprocessor(args);
@@ -80,10 +102,20 @@ namespace MargieBot.Responders
                     try
                     {
                         var Proflist = Trycorder.GetProfiles();
+                        
                         List<string> profs = new List<String>();
                         foreach(var rabbit in Proflist)
                         {
                             profs.Add(rabbit.Key);
+                        }
+                        if(profs.Count<1)
+                        {
+                            Trycorder.Initialize();
+                            Proflist = Trycorder.GetProfiles();
+                            foreach (var rabbit in Proflist)
+                            {
+                                profs.Add(rabbit.Key);
+                            }
                         }
                         toreturn.Text = stivfunc.List2String(profs);
                     }
@@ -116,6 +148,8 @@ namespace MargieBot.Responders
             ToReturn += "Profiles\n";
             ToReturn += "Status\n";
             ToReturn += "ec2 {Searchstring} \n";
+            ToReturn += "rds {Searchstring} \n";
+            ToReturn += "iam {Searchstring} \n";
 
             return ToReturn;
         }
@@ -175,5 +209,32 @@ namespace MargieBot.Responders
             return ToReturn;
         }
 
+        public string iamprocessor(List<string> args)
+        {
+            string ToReturn = "";
+            string filterstring = args[2];
+
+            var what = Trycorder.FilterScannerDataTable("iam", filterstring, true, true);
+
+            var number = what.Rows.Count;
+
+            foreach (DataRow arow in what.Rows)
+            {
+
+                string Profile = arow["Profile"].ToString();
+                string Username = arow["Username"].ToString();
+
+
+                string PWE = arow["PwdEnabled"].ToString();
+                string MFA = arow["MFA Active"].ToString();
+
+                ToReturn += Profile + "    Name:" + Username + "     Pwd: " + PWE + "     MFA:" + MFA + "\n";
+
+            }
+
+
+
+            return ToReturn;
+        }
     }
 }
